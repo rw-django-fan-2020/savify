@@ -29,11 +29,11 @@ jobs:
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
 
       # Build python script into a stand-alone exe
-      - uses: Nuitka/Nuitka-Action@v0.4
+      - uses: Nuitka/Nuitka-Action@pyside2-options
         with:
           script-name: setup.py
           standalone: true
-          enable-plugins: pyside6
+          #enable-plugins: pyside6
 
       # Uploads artifact
       - name: Upload Artifact
