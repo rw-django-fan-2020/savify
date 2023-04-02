@@ -22,8 +22,8 @@ jobs:
       - name: Lade ausführbare Datei hoch
         uses: actions/upload-artifact@v3
         with:
-          name: my-executable
-          path: dist/setup
+          name: savify.exe
+          path: dist
 
   release:
     needs: build
