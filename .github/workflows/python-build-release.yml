@@ -17,13 +17,13 @@ jobs:
         run: pip install pyinstaller
 
       - name: Erstelle ausführbare Datei
-        run: pyinstaller --onefile your_script.py
+        run: pyinstaller --onefile savify.py
 
       - name: Lade ausführbare Datei hoch
         uses: actions/upload-artifact@v2
         with:
           name: my-executable
-          path: dist/your_script
+          path: dist/savify.py
 
   release:
     needs: build
