@@ -1,0 +1,50 @@
+name: Python-Anwendung build und Release
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout-Code
+        uses: actions/checkout@v2
+
+      - name: Installiere PyInstaller
+        run: pip install pyinstaller
+
+      - name: Erstelle ausführbare Datei
+        run: pyinstaller --onefile your_script.py
+
+      - name: Lade ausführbare Datei hoch
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-executable
+          path: dist/your_script
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Checkout-Code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Lade ausführbare Datei herunter
+        uses: actions/download-artifact@v2
+        with:
+          name: my-executable
+          path: dist/
+
+      - name: Erstelle GitHub-Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/*
+          tag_name: ${{ github.ref }}
+          body: Release ${{ github.ref }}
