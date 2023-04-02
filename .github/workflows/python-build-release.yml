@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout-Code
         uses: actions/checkout@v3
@@ -20,14 +20,14 @@ jobs:
         run: pyinstaller --onefile setup.py
 
       - name: Lade ausführbare Datei hoch
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: my-executable
           path: dist/setup
 
   release:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
 
     steps:
