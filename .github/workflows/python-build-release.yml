@@ -17,7 +17,7 @@ jobs:
         run: pip install pyinstaller
 
       - name: Erstelle ausführbare Datei
-        run: pyinstaller --onefile savify.py
+        run: pyinstaller --onefile setup.py
 
       - name: Lade ausführbare Datei hoch
         uses: actions/upload-artifact@v2
