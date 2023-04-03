@@ -24,7 +24,7 @@ jobs:
       - run: python3 setup.py install
 
       - name: Erstelle ausführbare Datei
-        run: pyinstaller --onefile setup.py
+        run: pyinstaller --onefile savify/__init__.py
 
       - name: Lade ausführbare Datei hoch
         uses: actions/upload-artifact@v3
