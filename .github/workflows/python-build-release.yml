@@ -15,6 +15,12 @@ jobs:
 
       - name: Installiere PyInstaller
         run: pip install pyinstaller
+        
+      - name: Installiere Dependency
+        run: python setup.py sdist
+      - run: python setup.py bdist_wheel
+      - run: ls -l dist
+      - run: python setup.py install
 
       - name: Erstelle ausführbare Datei
         run: pyinstaller --onefile setup.py
