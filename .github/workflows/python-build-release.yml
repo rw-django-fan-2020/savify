@@ -16,12 +16,13 @@ jobs:
       - name: Installiere PyInstaller
         run: pip install pyinstaller
         
+      - run: python3 setup.py install
+        
       - name: Installiere Dependency
         run: python3 setup.py sdist
       - run: pip3 install wheel
       - run: python3 setup.py bdist_wheel
       - run: ls -l dist
-      - run: python3 setup.py install
 
       - name: Erstelle ausführbare Datei
         run: pyinstaller --onefile savify/__init__.py
