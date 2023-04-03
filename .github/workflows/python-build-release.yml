@@ -17,10 +17,11 @@ jobs:
         run: pip install pyinstaller
         
       - name: Installiere Dependency
-        run: python setup.py sdist
-      - run: python setup.py bdist_wheel
+        run: python3 setup.py sdist
+      - run: pip3 install wheel
+      - run: python3 setup.py bdist_wheel
       - run: ls -l dist
-      - run: python setup.py install
+      - run: python3 setup.py install
 
       - name: Erstelle ausführbare Datei
         run: pyinstaller --onefile setup.py
